@@ -1,6 +1,4 @@
-SENIOR PRODUCT MANAGER · LONDON, UK
-Bithika
-Das
+Bithika Das : SENIOR PRODUCT MANAGER · LONDON, UK
 Building products that simplify complexity,
 scale globally & deliver measurable commercial impact
 
