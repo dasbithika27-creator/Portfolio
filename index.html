@@ -7,8 +7,24 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#07070f;--bg2:#0d0d1a;--bg3:#121226;--bg4:#1a1a30;--gold:#e8a045;--gold2:#f5c878;--teal:#3ecfb2;--rose:#f06292;--blue:#60a5fa;--text:#e4e4f0;--text2:#9898b8;--text3:#555575;--border:rgba(255,255,255,0.06);--border2:rgba(232,160,69,0.22)}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#faf9f6;        /* warm white (not harsh) */
+  --bg2:#f3f1ec;       /* section alternate */
+  --bg3:#ffffff;       /* cards */
+  --bg4:#f7f5f0;       /* hover */
+
+  --text:#111111;      /* primary text */
+  --text2:#4b4b4b;     /* secondary */
+  --text3:#8a8a8a;     /* tertiary */
+
+  --gold:#c6a86b;      /* toned-down gold */
+  --gold2:#e6cfa3;
+
+  --teal:#2fa58d;      /* softer teal */
+
+  --border:rgba(0,0,0,0.06);
+  --border2:rgba(198,168,107,0.25);
+}
 html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6}
 body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:.4}
