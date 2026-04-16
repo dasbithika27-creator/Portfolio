@@ -7,138 +7,499 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#faf9f6;
-  --bg2:#f3f1ec;
-  --bg3:#ffffff;
-  --bg4:#f7f5f0;
-
-  --text:#111111;
-  --text2:#4b4b4b;
-  --text3:#8a8a8a;
-
-  --gold:#c6a86b;
-  --gold2:#e6cfa3;
-
-  --teal:#2fa58d;
-
-  --border:rgba(0,0,0,0.06);
-  --border2:rgba(198,168,107,0.25);
-}
-
+:root{--bg:#07070f;--bg2:#0d0d1a;--bg3:#121226;--bg4:#1a1a30;--gold:#e8a045;--gold2:#f5c878;--teal:#3ecfb2;--rose:#f06292;--blue:#60a5fa;--text:#e4e4f0;--text2:#9898b8;--text3:#555575;--border:rgba(255,255,255,0.06);--border2:rgba(232,160,69,0.22)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-
-body{
-  font-family:'DM Sans',sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  overflow-x:hidden;
-  line-height:1.6
-}
-
-body::after{opacity:.08}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:.4}
 
 /* NAV */
-nav{
-  position:fixed;
-  top:0;left:0;right:0;
-  z-index:800;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:20px 64px;
-  background:rgba(250,249,246,0.75);
-  backdrop-filter:blur(20px);
-  border-bottom:1px solid rgba(0,0,0,0.04);
-}
-
-.nav-logo{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;color:var(--gold);text-decoration:none}
+nav{position:fixed;top:0;left:0;right:0;z-index:800;display:flex;align-items:center;justify-content:space-between;padding:20px 64px;background:rgba(7,7,15,0.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);transition:padding .3s}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;color:var(--gold);letter-spacing:.5px;text-decoration:none}
 .nav-logo span{color:var(--text);font-weight:300}
-
 .nav-links{display:flex;gap:34px;list-style:none}
-.nav-links a{font-size:11px;color:var(--text2);text-decoration:none;letter-spacing:2px;text-transform:uppercase}
-.nav-links a:hover{color:#111}
-
-.nav-cta{
-  font-size:11.5px;
-  color:#fff;
-  background:#111;
-  padding:9px 22px;
-  border-radius:2px;
-  text-decoration:none
-}
-.nav-cta:hover{background:#333}
+.nav-links a{font-size:11px;font-weight:500;color:var(--text2);text-decoration:none;letter-spacing:2px;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{font-size:11.5px;font-weight:600;color:var(--bg);background:var(--gold);padding:9px 22px;border-radius:2px;text-decoration:none;transition:all .2s}
+.nav-cta:hover{background:var(--gold2);transform:translateY(-1px)}
 
 /* HERO */
-#hero{min-height:100vh;display:flex;align-items:center;padding:130px 64px 80px}
-
-.grid-lines{display:none}
-
-.hero-inner{max-width:860px}
-
-.hero-name{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(62px,9vw,110px);
-  letter-spacing:-1px;
-}
-
-.hero-role{color:var(--text2)}
-.hero-desc{color:#555}
-
-.btn-p{
-  background:#111;
-  color:#fff;
-  padding:15px 36px;
-  text-decoration:none
-}
-.btn-p:hover{background:#333}
-
-.btn-s{
-  border:1px solid rgba(0,0,0,0.1);
-  color:var(--text);
-  padding:15px 36px;
-  text-decoration:none
-}
-.btn-s:hover{background:#111;color:#fff}
+#hero{min-height:100vh;display:flex;align-items:center;padding:130px 64px 80px;position:relative;overflow:hidden}
+.hero-glow{position:absolute;top:15%;right:8%;width:600px;height:600px;background:radial-gradient(ellipse,rgba(232,160,69,0.06) 0%,transparent 70%);pointer-events:none}
+.hero-glow2{position:absolute;bottom:5%;left:2%;width:500px;height:500px;background:radial-gradient(ellipse,rgba(62,207,178,0.04) 0%,transparent 70%);pointer-events:none}
+.grid-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.018) 1px,transparent 1px);background-size:80px 80px;pointer-events:none}
+.hero-inner{position:relative;max-width:860px}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--teal);letter-spacing:3.5px;text-transform:uppercase;margin-bottom:32px;opacity:0;animation:fadeUp .8s .15s forwards}
+.hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(62px,9vw,110px);font-weight:300;line-height:.93;letter-spacing:-2px;margin-bottom:16px;opacity:0;animation:fadeUp .8s .35s forwards}
+.hero-name .g{color:var(--gold);font-weight:700}
+.hero-name .it{font-style:italic}
+.hero-role{font-family:'Cormorant Garamond',serif;font-size:clamp(19px,2.8vw,30px);font-weight:300;font-style:italic;color:var(--text2);margin-bottom:42px;opacity:0;animation:fadeUp .8s .55s forwards;max-width:680px;line-height:1.5}
+.hero-desc{font-size:16px;line-height:1.85;color:var(--text2);max-width:580px;margin-bottom:56px;opacity:0;animation:fadeUp .8s .75s forwards}
+.hero-stats{display:flex;gap:56px;margin-bottom:56px;opacity:0;animation:fadeUp .8s .95s forwards}
+.stat .n{font-family:'Cormorant Garamond',serif;font-size:50px;font-weight:600;color:var(--gold);line-height:1}
+.stat .l{font-size:10.5px;color:var(--text3);letter-spacing:2px;text-transform:uppercase;margin-top:6px}
+.hero-btns{display:flex;gap:14px;opacity:0;animation:fadeUp .8s 1.1s forwards}
+.btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#07070f;padding:15px 36px;font-size:13px;font-weight:600;text-decoration:none;border-radius:2px;transition:all .2s}
+.btn-p:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 16px 40px rgba(232,160,69,.25)}
+.btn-s{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border2);color:var(--text2);padding:15px 36px;font-size:13px;font-weight:500;text-decoration:none;border-radius:2px;transition:all .2s}
+.btn-s:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+.scroll-ind{position:absolute;bottom:44px;right:64px;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;animation:fadeUp .8s 1.3s forwards}
+.scroll-ind span{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:2.5px;text-transform:uppercase;writing-mode:vertical-rl}
+.scroll-line{width:1px;height:54px;background:linear-gradient(var(--gold),transparent);animation:pulseH 2.2s ease-in-out infinite}
 
 /* SECTIONS */
 section{padding:110px 64px}
+.sec-label{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--teal);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,5.5vw,68px);font-weight:300;line-height:1.05;margin-bottom:14px}
+.sec-title em{font-style:italic;color:var(--gold)}
+.sec-sub{font-size:15px;color:var(--text2);max-width:540px;line-height:1.78;margin-bottom:68px}
 
-.sec-title{letter-spacing:-1px}
-.sec-sub{color:#555}
+/* VISION */
+#vision{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.vision-split{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:2px}
+.vc{background:var(--bg3);padding:52px;position:relative;overflow:hidden;transition:background .3s}
+.vc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent)}
+.vc:hover{background:var(--bg4)}
+.vc-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:22px}
+.vc-text{font-family:'Cormorant Garamond',serif;font-size:23px;font-weight:300;line-height:1.65;color:var(--text)}
+.vc-text em{font-style:italic;color:var(--gold2)}
+.commerce-takes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
+.ct{border:1px solid var(--border);border-radius:4px;padding:36px;transition:all .3s;cursor:default}
+.ct:hover{border-color:var(--border2);transform:translateY(-5px);background:rgba(232,160,69,.025)}
+.ct-num{font-family:'Cormorant Garamond',serif;font-size:54px;font-weight:700;color:rgba(232,160,69,.1);line-height:1;margin-bottom:18px}
+.ct h4{font-size:13.5px;font-weight:600;color:var(--gold);margin-bottom:10px;letter-spacing:.3px}
+.ct p{font-size:13px;color:var(--text2);line-height:1.78}
 
-#vision,#work,#blog{background:var(--bg2)}
+/* TIMELINE */
+#experience{background:var(--bg)}
+.timeline{position:relative;padding-left:28px;max-width:880px}
+.timeline::before{content:'';position:absolute;left:0;top:10px;bottom:0;width:1px;background:linear-gradient(var(--gold) 0%,rgba(232,160,69,.08) 90%,transparent)}
+.tl-item{position:relative;padding:0 0 60px 52px;opacity:0;transform:translateX(-18px);transition:opacity .6s,transform .6s}
+.tl-item.vis{opacity:1;transform:none}
+.tl-dot{position:absolute;left:-6.5px;top:10px;width:14px;height:14px;border-radius:50%;background:var(--gold);border:2px solid var(--bg);box-shadow:0 0 0 5px rgba(232,160,69,.12)}
+.tl-period{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--teal);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+.tl-role{font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:600;color:var(--text);margin-bottom:4px;line-height:1.2}
+.tl-company{font-size:13px;color:var(--gold);font-weight:500;margin-bottom:20px;letter-spacing:.3px}
+.tl-metrics{display:flex;gap:30px;margin-bottom:20px;flex-wrap:wrap}
+.metric{border-left:2px solid var(--gold);padding-left:14px}
+.metric .mv{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--gold);line-height:1}
+.metric .ml{font-size:10px;color:var(--text3);letter-spacing:1.2px;text-transform:uppercase;margin-top:4px}
+.tl-desc{font-size:13.5px;color:var(--text2);line-height:1.82;margin-bottom:20px;max-width:700px}
+.tl-tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{font-size:11px;border:1px solid var(--border);color:var(--text3);padding:4px 12px;border-radius:20px;letter-spacing:.5px}
+.tag.hl{border-color:var(--border2);color:var(--gold)}
 
-/* CARDS */
-.vc,.ct,.sg,.bc,.wci{
-  border:1px solid rgba(0,0,0,0.04);
-  box-shadow:0 10px 30px rgba(0,0,0,0.04);
-}
+/* WORK */
+#work{background:var(--bg2);border-top:1px solid var(--border)}
+.work-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.wc{position:relative;overflow:hidden}
+.wci{padding:52px;background:var(--bg3);height:100%;transition:background .3s;position:relative;display:flex;flex-direction:column}
+.wc:hover .wci{background:var(--bg4)}
+.wc-accent{position:absolute;bottom:0;left:0;right:0;height:2px}
+.acc-forge{background:linear-gradient(90deg,#f59e0b,transparent)}
+.acc-nexus{background:linear-gradient(90deg,#3ecfb2,transparent)}
+.acc-cat{background:linear-gradient(90deg,#f06292,transparent)}
+.acc-ericsson{background:linear-gradient(90deg,#60a5fa,transparent)}
+.proto-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(62,207,178,.1);border:1px solid rgba(62,207,178,.2);color:var(--teal);font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:20px;margin-bottom:14px;width:fit-content}
+.proto-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:pulseH 1.8s infinite}
+.sector-bar{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--text3);margin-bottom:20px}
+.sector-bar::before{content:'';display:block;height:1px;width:28px;background:var(--border2)}
+.wc-type{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text3);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+.wc-title{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:700;line-height:1.05;color:var(--text);margin-bottom:8px}
+.wc-sub{font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:var(--gold);margin-bottom:22px}
+.wc-desc{font-size:13.5px;color:var(--text2);line-height:1.82;margin-bottom:28px;flex-grow:1}
+.wc-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:28px;padding:18px;background:rgba(0,0,0,.3);border-radius:4px}
+.kpi .v{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--gold);line-height:1}
+.kpi .l{font-size:9.5px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin-top:5px}
+.wc-feats{list-style:none;margin-bottom:26px}
+.wc-feats li{font-size:13px;color:var(--text2);padding:7px 0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;align-items:flex-start;gap:10px;line-height:1.6}
+.wc-feats li::before{content:'→';color:var(--gold);flex-shrink:0;margin-top:1px}
+.wc-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:28px}
+.wtag{font-size:10.5px;background:rgba(232,160,69,.07);border:1px solid rgba(232,160,69,.14);color:var(--gold2);padding:4px 12px;border-radius:2px;letter-spacing:.5px}
+.wc-link{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--gold);text-decoration:none;border:1px solid var(--border2);padding:10px 22px;border-radius:2px;font-weight:500;transition:all .2s;letter-spacing:.5px;width:fit-content;margin-top:auto}
+.wc-link:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
 
-.wc-kpis{
-  background:rgba(0,0,0,0.04);
-}
+/* SKILLS */
+#skills{background:var(--bg)}
+.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.sg{border:1px solid var(--border);border-radius:4px;padding:32px;transition:border-color .3s}
+.sg:hover{border-color:var(--border2)}
+.sg-icon{font-size:22px;margin-bottom:14px}
+.sg-title{font-size:12px;font-weight:600;color:var(--gold);letter-spacing:.8px;margin-bottom:14px;text-transform:uppercase}
+.sg-list{list-style:none}
+.sg-list li{font-size:12.5px;color:var(--text2);padding:5px 0;border-bottom:1px solid rgba(255,255,255,.038);display:flex;align-items:center;gap:8px}
+.sg-list li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.5;flex-shrink:0}
 
-.stat .n{
-  color:#111;
-}
+/* BLOG */
+#blog{background:var(--bg2);border-top:1px solid var(--border)}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.bc{border:1px solid var(--border);border-radius:4px;padding:36px;transition:all .3s;cursor:pointer}
+.bc:hover{border-color:var(--border2);transform:translateY(-4px);background:rgba(232,160,69,.02)}
+.bc-tag{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--teal);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:14px}
+.bc-title{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;color:var(--text);margin-bottom:12px;line-height:1.3}
+.bc-excerpt{font-size:13px;color:var(--text2);line-height:1.78;margin-bottom:18px}
+.bc-meta{font-size:11px;color:var(--text3);letter-spacing:.5px}
+
+/* CONTACT */
+#contact{background:var(--bg);border-top:1px solid var(--border);text-align:center}
+.contact-inner{max-width:660px;margin:0 auto}
+.avail{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--teal);letter-spacing:2px;text-transform:uppercase;margin-bottom:28px;display:flex;align-items:center;justify-content:center;gap:8px}
+.avail-dot{width:7px;height:7px;border-radius:50%;background:var(--teal);animation:pulseH 1.8s infinite}
+.contact-title{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,6vw,76px);font-weight:300;line-height:1;margin-bottom:24px}
+.contact-title em{font-style:italic;color:var(--gold)}
+.contact-sub{font-size:16px;color:var(--text2);line-height:1.82;margin-bottom:52px}
+.contact-links{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:64px}
+.cl{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--border2);color:var(--text2);padding:13px 28px;border-radius:2px;text-decoration:none;font-size:13px;font-weight:500;transition:all .2s}
+.cl:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+.cl.primary{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+.cl.primary:hover{background:var(--gold2)}
+.contact-grid{border-top:1px solid var(--border);padding-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;text-align:left}
+.cg-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.cg-val{font-family:'Cormorant Garamond',serif;font-size:19px;color:var(--text);line-height:1.4}
 
 /* FOOTER */
-footer{
-  background:var(--bg2);
-  border-top:1px solid var(--border);
-}
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:30px 64px;display:flex;align-items:center;justify-content:space-between}
+.foot-logo{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--gold)}
+.foot-copy{font-size:11px;color:var(--text3);letter-spacing:.5px}
+.foot-links{display:flex;gap:22px}
+.foot-links a{font-size:11px;color:var(--text3);text-decoration:none;transition:color .2s}
+.foot-links a:hover{color:var(--gold)}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes pulseH{0%,100%{opacity:.5}50%{opacity:1}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.reveal.vis{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
 
 @media(max-width:900px){
-  nav{padding:14px 24px}
+  nav{padding:14px 24px}.nav-links{display:none}
   #hero,section{padding:100px 24px 80px}
+  .hero-name{font-size:52px}.hero-stats{gap:28px}
+  .vision-split,.commerce-takes,.work-grid,.skills-grid,.blog-grid,.contact-grid{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:14px;text-align:center}
 }
 </style>
 </head>
 <body>
 
-<!-- KEEP REST OF YOUR HTML SAME -->
+<!-- NAV -->
+<nav id="nav">
+  <a class="nav-logo" href="#hero">Bithika<span> Das</span></a>
+  <ul class="nav-links">
+    <li><a href="#vision">Vision</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#blog">Writing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="mailto:dasbithika27@gmail.com">Let's Talk →</a>
+</nav>
 
+<!-- HERO -->
+<section id="hero">
+  <div class="grid-lines"></div>
+  <div class="hero-glow"></div><div class="hero-glow2"></div>
+  <div class="hero-inner">
+    <div class="eyebrow">Senior Product Manager · London, UK</div>
+    <h1 class="hero-name"><span class="it">Bithika</span><br><span class="g">Das</span></h1>
+    <p class="hero-role">Building products that simplify complexity,<br>scale globally &amp; deliver measurable commercial impact</p>
+    <p class="hero-desc">10+ years shaping eCommerce platforms, AI-driven commerce, and enterprise digital products across B2B, B2C, and B2B2X — from manufacturing giants to global telecoms and beyond. I turn strategy into execution and leave teams and platforms stronger than I found them.</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="n">10+</div><div class="l">Years Experience</div></div>
+      <div class="stat"><div class="n">25%</div><div class="l">Revenue Uplift</div></div>
+      <div class="stat"><div class="n">90+</div><div class="l">Team Members Led</div></div>
+      <div class="stat"><div class="n">5</div><div class="l">Global Markets</div></div>
+    </div>
+    <div class="hero-btns">
+      <a class="btn-p" href="#work">View My Work →</a>
+      <a class="btn-s" href="#contact">Get in Touch</a>
+    </div>
+  </div>
+  <div class="scroll-ind"><div class="scroll-line"></div><span>Scroll</span></div>
+</section>
+
+<!-- VISION -->
+<section id="vision">
+  <div class="sec-label">Philosophy</div>
+  <h2 class="sec-title">Vision, Mission &amp;<br><em>Commerce Thinking</em></h2>
+  <p class="sec-sub">How I think about product, commerce, and the impact that great digital experiences can have at scale.</p>
+
+  <div class="vision-split">
+    <div class="vc">
+      <div class="vc-label">My Vision</div>
+      <p class="vc-text">Build digital products that customers <em>trust</em> and businesses <em>rely on</em> — products that simplify complexity, scale globally, and deliver measurable commercial impact.</p>
+    </div>
+    <div class="vc">
+      <div class="vc-label">My Mission</div>
+      <p class="vc-text">Help large enterprises turn <em>strategy into execution</em> — owning end-to-end customer journeys, using data to guide decisions, and leading cross-functional teams through complex delivery with clarity and pace.</p>
+    </div>
+  </div>
+
+  <div class="commerce-takes">
+    <div class="ct reveal"><div class="ct-num">01</div><h4>Data Over Opinion</h4><p>Every product decision deserves evidence. I use ContentSquare, SQL, GA, and user research to build business cases from facts — not assumptions. When data contradicts the loudest voice in the room, data wins.</p></div>
+    <div class="ct reveal d1"><div class="ct-num">02</div><h4>Conversion is Confidence</h4><p>The best conversion optimisation isn't a CTA button colour — it's removing the friction that stops a customer trusting you. Clarity, confidence, and certainty beat persuasion every time.</p></div>
+    <div class="ct reveal d2"><div class="ct-num">03</div><h4>AI Must Be Grounded</h4><p>AI in commerce is only as good as the data it's grounded in. RAG architectures, domain guardrails, and role-based access aren't nice-to-haves — they're what separates a production AI system from a liability.</p></div>
+    <div class="ct reveal d3"><div class="ct-num">04</div><h4>Headless is a Strategy, Not a Trend</h4><p>Moving to headless means nothing unless team culture, agile model, and product thinking move with it. Platform modernisation and product maturity must scale together.</p></div>
+    <div class="ct reveal d1"><div class="ct-num">05</div><h4>Commerce at Scale is an Operations Problem</h4><p>The real complexity in enterprise eCommerce isn't the storefront — it's orchestrating 50 systems, 40 markets, 90 stakeholders, and a live trading platform simultaneously without dropping anything.</p></div>
+    <div class="ct reveal d2"><div class="ct-num">06</div><h4>Agentic Commerce is Now</h4><p>Autonomous AI agents making real-time merchandising decisions, optimising the digital shelf continuously — this isn't the future. I've shipped it in production.</p></div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="sec-label">Career</div>
+  <h2 class="sec-title"><em>Experience</em><br>Timeline</h2>
+  <p class="sec-sub">A decade of building at the intersection of enterprise commerce, platform modernisation, and AI-driven product.</p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">Apr 2024 — Dec 2025</div>
+      <div class="tl-role">Lead Product Manager, eCommerce</div>
+      <div class="tl-company">Caterpillar Inc. · Illinois, USA</div>
+      <div class="tl-metrics">
+        <div class="metric"><div class="mv">25%</div><div class="ml">Mobile Revenue Uplift</div></div>
+        <div class="metric"><div class="mv">25%</div><div class="ml">Conversion Improvement</div></div>
+        <div class="metric"><div class="mv">+20%</div><div class="ml">AI-led ATC Increase</div></div>
+        <div class="metric"><div class="mv">+18%</div><div class="ml">PDP Engagement</div></div>
+      </div>
+      <p class="tl-desc">Owned strategy, OKRs, roadmap, and execution for Caterpillar's global parts eCommerce platform across PDP, Cart, Checkout, and Personalisation. Led migration to headless commerce (Spartacus / SAP Commerce) and initiated AI capability across Cat AI Assistants (LLM + RAG + Helios) and AI-driven merchandising optimisation using CatBoost and affinity analysis.</p>
+      <div class="tl-tags"><span class="tag hl">AI &amp; GenAI</span><span class="tag hl">Headless Commerce</span><span class="tag hl">RAG Architecture</span><span class="tag">SAP Commerce</span><span class="tag">OKRs</span><span class="tag">CatBoost</span><span class="tag">ContentSquare</span><span class="tag">Mobile First</span></div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">Apr 2022 — Apr 2024</div>
+      <div class="tl-role">Senior Product Manager, eCommerce</div>
+      <div class="tl-company">Wipro / Ericsson · Stockholm, Sweden</div>
+      <div class="tl-metrics">
+        <div class="metric"><div class="mv">50+</div><div class="ml">Features Delivered</div></div>
+        <div class="metric"><div class="mv">80%</div><div class="ml">Manual Effort Reduced</div></div>
+        <div class="metric"><div class="mv">20+</div><div class="ml">Enterprise Customers</div></div>
+      </div>
+      <p class="tl-desc">Single decision-owner for Ericsson Core Commerce — CPQ and Quote-to-Order platform across B2B, B2C, and B2B2X. Redesigned CPQ flows, drove automation reducing PO booking from weeks to seconds, and established agile product governance across distributed global teams across NA, Europe, APAC, and LATAM.</p>
+      <div class="tl-tags"><span class="tag hl">CPQ</span><span class="tag hl">B2B2X Commerce</span><span class="tag">Quote-to-Order</span><span class="tag">Agile</span><span class="tag">Global Stakeholders</span><span class="tag">Enterprise Sales</span></div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">Jun 2020 — Apr 2022</div>
+      <div class="tl-role">Senior Product Owner</div>
+      <div class="tl-company">Capgemini / Herbalife Nutrition · California, USA</div>
+      <div class="tl-metrics">
+        <div class="metric"><div class="mv">5</div><div class="ml">Markets Launched</div></div>
+        <div class="metric"><div class="mv">100%</div><div class="ml">Compliance Maintained</div></div>
+      </div>
+      <p class="tl-desc">Owned end-to-end product lifecycle for distributor management and commerce features across 5 international market expansions. Led regulatory compliance, localisation strategy, and cross-functional delivery with legal, compliance, and regional business teams under strict life sciences standards.</p>
+      <div class="tl-tags"><span class="tag hl">Distributor Commerce</span><span class="tag">Regulatory Compliance</span><span class="tag">Global Expansion</span><span class="tag">Life Sciences</span><span class="tag">CSPO</span></div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">Nov 2014 — May 2020</div>
+      <div class="tl-role">Solutions Business Analyst, eCommerce</div>
+      <div class="tl-company">Accenture · Lund, Sweden</div>
+      <p class="tl-desc">Led SAP Hybris B2B eCommerce implementations owning requirements, user stories, and acceptance criteria. Built operational dashboards using Elasticsearch and Kibana. Partnered with stakeholders and UX teams on solution design, wireframes, and prototyping across multiple client engagements.</p>
+      <div class="tl-tags"><span class="tag">SAP Hybris</span><span class="tag">B2B eCommerce</span><span class="tag">Solution Design</span><span class="tag">Elasticsearch</span><span class="tag">Release Management</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="sec-label">Portfolio</div>
+  <h2 class="sec-title">Featured <em>Work</em> &amp;<br>Prototypes</h2>
+  <p class="sec-sub">Selected case studies, live prototypes, and strategic product work spanning AI commerce, sustainability intelligence, and global crisis platforms.</p>
+
+  <div class="work-grid">
+
+    <!-- FORGE -->
+    <div class="wc">
+      <div class="wci">
+        <div class="wc-accent acc-forge"></div>
+        <div class="proto-badge">
+  <span class="proto-dot"></span>
+  <a href="https://dasbithika27-creator.github.io/forge-prototype/" target="_blank" style="text-decoration:none; font-weight:500;">
+    🔗 Launch Prototype
+  </a>
+</div>
+        <div class="sector-bar">Construction · Procurement · Sustainability</div>
+        <div class="wc-type">Product Concept</div>
+        <div class="wc-title">FORGE</div>
+        <div class="wc-sub">Sustainable Procurement Intelligence Platform</div>
+        <p class="wc-desc">A full-stack AI-powered procurement and sustainability platform designed for UK infrastructure projects — HS2 Euston Station, Hinkley Point C, Manchester Airport Terminal 2, and Battersea Power Station. FORGE unifies supplier intelligence, live reverse auctions, Scope 3 carbon tracking, and AI-driven purchasing recommendations into a single operational command centre. Built to answer the core question: how do you procure at scale while hitting 2030 carbon reduction targets?</p>
+        <div class="wc-kpis">
+          <div class="kpi"><div class="v">4 Sites</div><div class="l">Active Projects</div></div>
+          <div class="kpi"><div class="v">Scope 3</div><div class="l">Emissions Tracked</div></div>
+          <div class="kpi"><div class="v">Live</div><div class="l">Reverse Auction</div></div>
+        </div>
+        <ul class="wc-feats">
+          <li>AI supplier recommendations balancing price, carbon grade (A–D), delivery risk, and Scope 3 intensity per tonne</li>
+          <li>Live reverse auction engine — real-time competitive bidding with countdown timer and automated bid updates</li>
+          <li>Scope 3 emissions trend vs. 2030 reduction targets, with carbon-avoided reporting per month</li>
+          <li>Approval workflow with L1–L3 authorisation tiers, urgency flags, and spend value controls</li>
+          <li>Steel price trend forecasting with 7-week ahead prediction and forward demand planning</li>
+          <li>Sustainability report module — carbon intensity, renewable sourcing %, ESG supplier metrics</li>
+        </ul>
+        <div class="wc-tags"><span class="wtag">React</span><span class="wtag">Recharts</span><span class="wtag">AI Recommendations</span><span class="wtag">ESG</span><span class="wtag">Scope 3</span><span class="wtag">Procurement</span><span class="wtag">Infrastructure Company</span></div>
+        <a class="wc-link" href="mailto:dasbithika27@gmail.com">Request Demo →</a>
+      </div>
+    </div>
+
+    <!-- NEXUS -->
+    <div class="wc">
+      <div class="wci">
+        <div class="wc-accent acc-nexus"></div>
+        <div class="proto-badge"><span class="proto-dot"></span>Live Prototype</div>
+        <div class="sector-bar">Global Policy · Predictive AI · Crisis Intelligence</div>
+        <div class="wc-type">Product Concept — UN / Davos Ready</div>
+        <div class="wc-title">NEXUS</div>
+        <div class="wc-sub">Critical Global Issues Intelligence Platform</div>
+        <p class="wc-desc">A global crisis intelligence platform mapping the cascade relationships between the world's five most critical challenges — Climate Collapse, Food &amp; Water Security, Mental Health, AI Inequality, and Healthcare Access — using peer-reviewed research coefficients, real World Bank API data, and predictive modelling. Built for UN panels, Davos, and institutional investors who need to understand systemic risk before it becomes irreversible.</p>
+        <div class="wc-kpis">
+          <div class="kpi"><div class="v">13</div><div class="l">Cascade Models</div></div>
+          <div class="kpi"><div class="v">180+</div><div class="l">Countries</div></div>
+          <div class="kpi"><div class="v">31</div><div class="l">Research Papers</div></div>
+        </div>
+        <ul class="wc-feats">
+          <li>Interactive cascade web — click any crisis node to reveal peer-reviewed cascade coefficients and time delays to all connected crises</li>
+          <li>Real World Bank API integration — live data across climate, food, health, and economic indicators</li>
+          <li>Predictive scenario engine — South Asia Drought (78%), H5N1 Pandemic (90%), AI Mass Displacement (82%), Food Price Spike (70%)</li>
+          <li>Country intelligence drill-down: India, Nigeria, Bangladesh — triple-cascade risk scoring with specific data</li>
+          <li>Evidence panel with DOIs, 95% confidence intervals, and source citations per cascade link (IPCC AR6, Lancet, WHO, McKinsey)</li>
+          <li>12-slide Davos/UN pitch deck — built for Gates Foundation, UN, and World Bank partnership conversations</li>
+        </ul>
+        <div class="wc-tags"><span class="wtag">React</span><span class="wtag">World Bank API</span><span class="wtag">Predictive AI</span><span class="wtag">SVG Visualisation</span><span class="wtag">UN / Davos</span><span class="wtag">Global Policy</span></div>
+        <a class="wc-link" href="mailto:dasbithika27@gmail.com">Request Demo →</a>
+      </div>
+    </div>
+
+    <!-- CAT AI -->
+    <div class="wc">
+      <div class="wci">
+        <div class="wc-accent acc-cat"></div>
+        <div class="proto-badge">
+  <span class="proto-dot"></span>
+  <a href="https://www.cat.ai/" target="_blank" style="text-decoration:none; font-weight:500;">
+    🔗 Launch Product
+  </a>
+</div>
+        <div class="sector-bar">Industrial B2B · GenAI · Agentic Commerce</div>
+        <div class="wc-type">Delivered Product — Caterpillar Inc.</div>
+        <div class="wc-title">Cat AI<br>Assistant</div>
+        <div class="wc-sub">Production Agentic Commerce — LLM + RAG</div>
+        <p class="wc-desc">Caterpillar's industrial conversational AI — built on large language models with a Retrieval-Augmented Generation architecture connected to the Helios data platform. Natural language parts discovery across hundreds of thousands of SKUs, with domain-specific guardrails, role-based access controls, and full audit logging. Alongside it: an autonomous AI merchandising agent to continuously rank and surface the right products based on revenue per impression, availability, and affinity data.</p>
+        <div class="wc-kpis">
+          <div class="kpi"><div class="v">+20%</div><div class="l">AI-led Add-to-Cart</div></div>
+          <div class="kpi"><div class="v">+18%</div><div class="l">PDP Engagement</div></div>
+          <div class="kpi"><div class="v">Global</div><div class="l">B2B Deployment</div></div>
+        </div>
+        <ul class="wc-feats">
+          <li>LLM + RAG grounded in Helios — connected-machine telemetry, service history, manuals, parts data — zero hallucination tolerance</li>
+          <li>Domain-specific guardrails preventing unsafe recommendations in a high-stakes industrial context</li>
+          <li>Role-based access controls and audit logging for enterprise compliance and accountability</li>
+          <li>Personalisation engine — equipment memory, Buy Again, one-click Buy Now driving repeat purchase</li>
+        </ul>
+        <div class="wc-tags"><span class="wtag">LLM</span><span class="wtag">RAG</span><span class="wtag">Helios Platform</span><span class="wtag">Agentic Commerce</span><span class="wtag">Caterpillar</span></div>
+      </div>
+    </div>
+
+    <!-- CPQ -->
+    <div class="wc">
+      <div class="wci">
+        <div class="wc-accent acc-ericsson"></div>
+        <div class="sector-bar">Telecom · B2B2X · Enterprise Platform</div>
+        <div class="wc-type">Delivered Product — Ericsson (via Wipro)</div>
+        <div class="wc-title">Ericsson Core<br>Commerce</div>
+        <div class="wc-sub">CPQ &amp; Quote-to-Order Transformation</div>
+        <p class="wc-desc">End-to-end redesign of Ericsson's CPQ and Quote-to-Order platform supporting complex telecom configurations, enterprise contracts, and partner-led sales. Automation reduced purchase order booking from weeks to seconds — a step-change in speed-to-business for enterprise customers. Delivered 50+ features as single PM decision-owner across a globally distributed team.</p>
+        <div class="wc-kpis">
+          <div class="kpi"><div class="v">Seconds</div><div class="l">vs. Weeks for PO</div></div>
+          <div class="kpi"><div class="v">2,000+</div><div class="l">Orders Enabled</div></div>
+          <div class="kpi"><div class="v">4</div><div class="l">Global Regions</div></div>
+        </div>
+        <ul class="wc-feats">
+          <li>End-to-end CPQ redesign supporting complex telecom configurations and enterprise contracts across B2B, B2C, B2B2X</li>
+          <li>Automated OPEX reporting dashboards reducing manual effort by 80%</li>
+          <li>Onboarded 20+ enterprise customers across NA, Europe, APAC, and LATAM</li>
+          <li>Executive and customer forum representation — roadmap, risks, and value communication at board level</li>
+        </ul>
+        <div class="wc-tags"><span class="wtag">CPQ</span><span class="wtag">B2B2X</span><span class="wtag">Automation</span><span class="wtag">Enterprise</span><span class="wtag">Ericsson</span><span class="wtag">Wipro</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="sec-label">Expertise</div>
+  <h2 class="sec-title">Skills &amp;<br><em>Capabilities</em></h2>
+  <p class="sec-sub">A decade of hands-on delivery across product strategy, commerce technology, AI, and global team leadership.</p>
+  <div class="skills-grid">
+    <div class="sg reveal"><div class="sg-icon">🧭</div><div class="sg-title">Product Leadership</div><ul class="sg-list"><li>Product Vision &amp; Strategy</li><li>OKR &amp; Outcome Delivery</li><li>Roadmap Ownership</li><li>Go-to-Market Strategy</li><li>Stakeholder Alignment</li><li>Executive Communication</li><li>Product Storytelling</li></ul></div>
+    <div class="sg reveal d1"><div class="sg-icon">🛒</div><div class="sg-title">Commerce &amp; Platforms</div><ul class="sg-list"><li>SAP Commerce (Hybris + Spartacus)</li><li>Headless / Composable Commerce</li><li>HCL Commerce · Magento</li><li>CPQ &amp; Order Management</li><li>PDP · Cart · Checkout</li><li>Attraqt · Contentstack</li><li>API-driven Architecture</li></ul></div>
+    <div class="sg reveal d2"><div class="sg-icon">🤖</div><div class="sg-title">AI &amp; Emerging Tech</div><ul class="sg-list"><li>LLM Product Design</li><li>RAG Architecture</li><li>Agentic Commerce</li><li>CatBoost &amp; Ranking Models</li><li>Affinity Analysis</li><li>Personalisation Engines</li><li>GenAI Use Cases</li></ul></div>
+    <div class="sg reveal d3"><div class="sg-icon">📊</div><div class="sg-title">Data &amp; Analytics</div><ul class="sg-list"><li>SQL (MS SQL, Oracle)</li><li>Tableau · Power BI</li><li>Google Analytics</li><li>ContentSquare</li><li>A/B Testing</li><li>Funnel Analysis</li><li>Behavioural Research</li></ul></div>
+    <div class="sg reveal"><div class="sg-icon">⚙️</div><div class="sg-title">Delivery &amp; Process</div><ul class="sg-list"><li>Agile / Scrum (CSPO)</li><li>Continuous Discovery</li><li>Sprint &amp; Backlog Ownership</li><li>Cross-functional Leadership</li><li>JIRA · Azure DevOps · Aha!</li><li>Scaled Agile</li><li>Release Management</li></ul></div>
+    <div class="sg reveal d1"><div class="sg-icon">🌍</div><div class="sg-title">Industries</div><ul class="sg-list"><li>Industrial B2B (Caterpillar)</li><li>Telecom B2B2X (Ericsson)</li><li>Nutrition / FMCG (Herbalife)</li><li>Fashion / Retail</li><li>Construction &amp; Infrastructure</li><li>Global Policy &amp; NGO</li><li>Life Sciences</li></ul></div>
+    <div class="sg reveal d2"><div class="sg-icon">🎨</div><div class="sg-title">UX &amp; Research</div><ul class="sg-list"><li>Figma · Miro</li><li>Wireframing &amp; Prototyping</li><li>Design Thinking</li><li>Customer Journey Mapping</li><li>VOC / VOD Research</li><li>Empathy Mapping</li><li>Accessibility Design (UK)</li></ul></div>
+    <div class="sg reveal d3"><div class="sg-icon">🏆</div><div class="sg-title">Credentials</div><ul class="sg-list"><li>CSPO — Scrum Alliance</li><li>IIM Indore — Business Analytics</li><li>B.Eng Electronics — NIST</li><li>VP Recognition — Caterpillar 2025</li><li>Delivery Superstar — Wipro 2023</li><li>10+ Years Senior PM</li><li>90+ Cross-functional Teams</li></ul></div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog">
+  <div class="sec-label">Writing &amp; Thinking</div>
+  <h2 class="sec-title">Articles &amp;<br><em>Perspectives</em></h2>
+  <p class="sec-sub">Thoughts on agentic commerce, AI product strategy, headless architecture, and the future of digital experience.</p>
+  <div class="blog-grid">
+    <div class="bc reveal"><div class="bc-tag">Agentic Commerce</div><div class="bc-title">Why I Built Agentic Commerce in Production Before Most People Know What It Is</div><p class="bc-excerpt">The AI merchandising layer I built at Caterpillar was autonomously making real-time decisions about what to surface to which buyer. That's not a feature — that's an agent. Here's what I learned shipping it.</p><div class="bc-meta">Coming Soon · 8 min read</div></div>
+    <div class="bc reveal d1"><div class="bc-tag">Headless Commerce</div><div class="bc-title">Headless Architecture Isn't a Tech Problem — It's a People Problem</div><p class="bc-excerpt">After leading Caterpillar's migration to headless commerce, the thing that nearly derailed it wasn't technical complexity — it was the team's mental model of how product delivery works.</p><div class="bc-meta">Coming Soon · 6 min read</div></div>
+    <div class="bc reveal d2"><div class="bc-tag">AI Product Strategy</div><div class="bc-title">RAG in Commerce: Why Grounding Your LLM in Proprietary Data Is the Whole Game</div><p class="bc-excerpt">The Cat AI Assistant only works because it refuses to guess. Every answer comes from retrieved, verified Helios data. This is the pattern every enterprise AI product should follow — and almost none do.</p><div class="bc-meta">Coming Soon · 7 min read</div></div>
+    <div class="bc reveal"><div class="bc-tag">PDP Optimisation</div><div class="bc-title">The PDP Is Where Commerce Is Won or Lost — Here's the Evidence</div><p class="bc-excerpt">A 25% conversion uplift doesn't come from a new feature — it comes from removing what was stopping the customer trusting you. A data-driven breakdown of what actually moved the needle.</p><div class="bc-meta">Coming Soon · 5 min read</div></div>
+    <div class="bc reveal d1"><div class="bc-tag">Global Issues</div><div class="bc-title">NEXUS: Why I Built a Global Crisis Intelligence Platform</div><p class="bc-excerpt">Climate → Food → Mental Health. The cascade is real, measurable, and backed by peer-reviewed coefficients. NEXUS started as a thought experiment and became a Davos-ready evidence platform.</p><div class="bc-meta">Coming Soon · 10 min read</div></div>
+    <div class="bc reveal d2"><div class="bc-tag">Commerce Strategy</div><div class="bc-title">What Industrial B2B eCommerce Taught Me About Luxury Retail</div><p class="bc-excerpt">A Caterpillar dealer buying £20K of parts online and a Sotheby's customer buying a £15K watch have more in common than you'd think. The psychology of high-value purchase confidence is universal.</p><div class="bc-meta">Coming Soon · 6 min read</div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="avail"><span class="avail-dot"></span>Available for new opportunities</div>
+    <h2 class="contact-title">Let's build<br>something <em>great</em></h2>
+    <p class="contact-sub">I'm actively exploring Senior PM and Lead PM roles in London — with a focus on eCommerce, AI-driven commerce, and digital platform transformation. Open to advisory conversations, collaborations, and product leadership discussions.</p>
+    <div class="contact-links">
+      <a class="cl primary" href="mailto:dasbithika27@gmail.com">✉ Email Me</a>
+      <a class="cl" href="https://linkedin.com/in/bithika2708" target="_blank">LinkedIn →</a>
+      <a class="cl" href="tel:+447343039596">+44 7343 039596</a>
+    </div>
+    <div class="contact-grid">
+      <div><div class="cg-label">Location</div><div class="cg-val">Greater London, UK</div></div>
+      <div><div class="cg-label">Email</div><div class="cg-val">dasbithika27@gmail.com</div></div>
+      <div><div class="cg-label">Open To</div><div class="cg-val">Senior PM · Lead PM<br>Advisory · Consulting</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-logo">Bithika Das</div>
+  <div class="foot-copy">© 2025 Bithika Das · Senior Product Manager · London</div>
+  <div class="foot-links"><a href="#hero">Top</a><a href="#vision">Vision</a><a href="#work">Work</a><a href="#contact">Contact</a></div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('vis'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.reveal, .tl-item').forEach(el => obs.observe(el));
+
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').style.padding = window.scrollY > 80 ? '12px 64px' : '20px 64px';
+});
+</script>
 </body>
 </html>
