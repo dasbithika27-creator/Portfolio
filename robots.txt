@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://dasbithika27-creator.github.io/Portfolio/sitemap.xml
+Sitemap: https://bithikadas.com/sitemap.xml
